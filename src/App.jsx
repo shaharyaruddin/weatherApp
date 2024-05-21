@@ -1,19 +1,12 @@
-import React from 'react'
-
+import React from 'react';
+import WeatherApp from './components/WeatherApp';
 function App() {
- 
- //add two numbers logic
- 
- 
-
-   
- 
   return (
+    <>
+<WeatherApp />
 
-
-
-    <div className=''>App</div>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
