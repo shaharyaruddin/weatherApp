@@ -4,33 +4,30 @@ import React, { useEffect, useState } from "react";
 function WeatherApp() {
 
   const [city,setChangeCity]=useState('')
+  const [weather,setWeather] =useState(null)
 
   const handleInput =(e)=>{
 
-   
-  
+    const changeValue = e.target.value;
+    console.log(changeValue);
 
-const changeValue =e.target.value
-console.log(changeValue)
+    setChangeCity(changeValue);
 
-setChangeCity(changeValue)
-
-useEffect(() => {
-  if (city) {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63170d53047add4fe24c91c1d00c896&units=metric`
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-}, [city]);
 
   }
+    
+  useEffect(()=>{
+
+axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63170d53047add4fe24c91c1d00c896&units=metric`)
+.then((res)=>{
+  console.log(res.data)
+  setWeather(res.data)
+})
+.catch((error)=>{
+  console.log(error)
+})
+  },[city])
+
 
   return (
     <>
@@ -39,7 +36,7 @@ useEffect(() => {
           <div className="flex justify-center py-4">
             <input
               type="text"
-              placeholder="Karachi"
+              placeholder="type any city "
               className="rounded-full p-2"
               onChange={handleInput}
             />
@@ -49,10 +46,12 @@ useEffect(() => {
             <p className="text-4xl font-semibold break-words whitespace-normal text-center">{city}</p>
           </div>
 
+          {weather && 
           <p className="flex justify-center items-center text-2xl font-bold">
-            38 C
+            {weather.main.temp}
           </p>
-        </div>
+          }
+ </div>
       </div>
     </>
   );
@@ -61,9 +60,8 @@ useEffect(() => {
 export default WeatherApp;
 
 
-// https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=a63170d53047add4fe24c91c1d00c896&units=metric
 
-// https://api.openweathermap.org/data/2.5/weather?q=karachi&appid=a63170d53047add4fe24c91c1d00c896&units=metric
+
 
 
 // https://weather-app-orcin-eta-42.vercel.app/
