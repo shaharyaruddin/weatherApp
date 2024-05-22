@@ -17,7 +17,7 @@ function WeatherApp() {
   }
     
   useEffect(()=>{
-
+if(city){
 axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63170d53047add4fe24c91c1d00c896&units=metric`)
 .then((res)=>{
   console.log(res.data)
@@ -25,7 +25,12 @@ axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a6317
 })
 .catch((error)=>{
   console.log(error)
+  setWeather(null)
 })
+}else{
+  setWeather(null)
+
+}
   },[city])
 
 
@@ -48,7 +53,7 @@ axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a6317
 
           {weather && 
           <p className="flex justify-center items-center text-2xl font-bold">
-            {weather.main.temp}
+            {weather.main.temp}°C
           </p>
           }
  </div>
