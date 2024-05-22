@@ -32,7 +32,7 @@ axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a6317
   return (
     <>
       <div className=" font-mono bg-slate-100 flex justify-center items-center h-screen ">
-        <div className=" bg-[#A0B7DC] w-1/4 h-3/5 rounded-xl">
+        <div className=" bg-[#A0B7DC] md:w-1/4 w-full  md:h-3/5 h-3/4 rounded-xl">
           <div className="flex justify-center py-4">
             <input
               type="text"
