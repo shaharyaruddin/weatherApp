@@ -9,7 +9,6 @@ function WeatherApp() {
   const handleInput =(e)=>{
 
     const changeValue = e.target.value;
-    console.log(changeValue);
 
     setChangeCity(changeValue);
 
@@ -53,7 +52,7 @@ axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a6317
 
           {weather && 
           <p className="flex justify-center items-center text-2xl font-bold">
-            {weather.main.temp}°C
+            {weather.main.temp}
           </p>
           }
  </div>
